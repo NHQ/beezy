@@ -1,16 +1,4 @@
-var curves = [[0,0], [0,1], [0,1], [1,0]]
-
-function solveY(t){
-  return beezy(solveX(t), curves.map(function(e){ return e[1] }))
-}
-
-function solveX(t){
-  return beezy(t, curves.map(function(e){ return e[0] }))
-}
-
-function beezy(x,y){
-  return (Math.pow(1 - x, 3) * y[0]) + (3 * Math.pow(1 -x, 2) * x * y[1]) + (3 * (1 - x) * Math.pow(x, 2) * y[2]) + Math.pow(x, 3) * y[3]
-}
+module.exports = solver // takes a rayray of control points of n scale bezier curves
 
 function beezn(scale){
   var fn = ''
@@ -32,6 +20,7 @@ function solver(curves){
     return fn(fn(t, x), y)
   }
 }
+/* a test, perhaps
 
 var solve = solver(curves)
 
@@ -42,3 +31,4 @@ for(var t = 0; t < 1; t+=.00001){
   console.log(solveY(t), solve(t))
 }
 
+*/
