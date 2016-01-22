@@ -1,0 +1,14 @@
+{
+  "name": "beezy",
+  "version": "0.1.0",
+  "description": "n scale bezier curve solver",
+  "main": "beezy.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jsynth": "^2.8.0"
+  }
+}
