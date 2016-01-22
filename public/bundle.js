@@ -47,9 +47,7 @@ for(var t = 0; t < 1; t+=.00001){
 var jsynth = require('jsynth')
 var master = new AudioContext
 
-
 var solver = require('./beezy')
-
 
 var curves = [[0,0], [.05, 1], [.2, .25],[.75, .5],  [1,0]]
 
