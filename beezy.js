@@ -17,13 +17,13 @@ function solver(curves){
   
 //  var pop = curves.pop()
 //  var shift = curves.shift()
-  curves = curves.reverse()
+  var _curves = curves.map(function(e){return e}).reverse()
 //  curves.push(pop)
 //  curves.unshift(shift)
   
   var fn = beezn(scale - 1)
-  var x = curves.map(function(e){return e[0]})
-  var y = curves.map(function(e){return e[1]})
+  var x = _curves.map(function(e){return e[0]})
+  var y = _curves.map(function(e){return e[1]})
 
   return function(t){
     return fn(fn(t, x), y)
