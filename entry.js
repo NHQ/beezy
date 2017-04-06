@@ -3,7 +3,7 @@ var hover = require('mouse-around')
 var touchdown = require('../touchdown')
 var findPos = require('./findPosition')
 
-var curves = [[0,0], [.0, 1],[1, 1], [1,0]]
+var curves = [[0,0], [0, 1],[1, 1], [1,0]]
 
 
 

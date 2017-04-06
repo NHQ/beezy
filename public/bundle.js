@@ -16,32 +16,14 @@ function beezn(scale){
 function solver(curves){
   var scale = curves.length
   
-//  var pop = curves.pop()
-//  var shift = curves.shift()
-//  var _curves = curves.map(function(e){return e})//.reverse()
-//  curves.push(pop)
-//  curves.unshift(shift)
-  
   var fn = beezn(scale - 1)
-  var x = _curves.map(function(e){return e[0]})
-  var y = _curves.map(function(e){return e[1]})
+  var x = curves.map(function(e){return e[0]})
+  var y = curves.map(function(e){return e[1]})
 
   return function(t){
     return fn(fn(t, x), y)
   }
 }
-/* a test, perhaps
-
-var solve = solver(curves)
-
-console.log(solve(0))
-
-
-for(var t = 0; t < 1; t+=.00001){
-  console.log(solveY(t), solve(t))
-}
-
-*/
 
 },{}],2:[function(require,module,exports){
 var solver = require('../beezy')
@@ -49,7 +31,7 @@ var hover = require('mouse-around')
 var touchdown = require('../touchdown')
 var findPos = require('./findPosition')
 
-var curves = [[0,0], [.0, 1],[1, 1], [1,0]]
+var curves = [[0,0], [0, 1],[1, 1], [1,0]]
 
 
 
