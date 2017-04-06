@@ -12,13 +12,18 @@ var parEl = parent()
 
 parEl.appendChild(canvas)
 document.body.appendChild(parEl)
-
+var input = document.createElement('input')
+input.type = 'text'
+document.body.appendChild(input)
 //canvas.width = window.innerWidth
 
 //canvas.height = window.innerHeight
 
 var draw = function(){
   var ctx = canvas.getContext('2d')
+  input.value = '[' + curves.map(function(e){
+    return `[${e.toString()}]`
+  }).join().toString() + ']'
   var solve = solver(curves)
   ctx.clearRect(0,0,canvas.width, canvas.height)
   ctx.moveTo(0, canvas.height)
@@ -32,7 +37,6 @@ var draw = function(){
 draw()
 
 canvas.pos = findPos(canvas)
-console.log(canvas.pos)
 curves.forEach(function(e, i){
   var dot = handle(e, canvas.pos)
   touchdown.start(dot)
@@ -45,7 +49,6 @@ curves.forEach(function(e, i){
       curves[i][0] = (e.detail.x  - canvas.pos[0]) / canvas.width
       curves[i][1] = (canvas.height - e.detail.y + canvas.pos[1]) / canvas.height
       draw()
-      console.log(curves)
     })
   })})(dot, i)
   parEl.appendChild(dot)

@@ -1,15 +1,14 @@
 # beezy
 
-this modules solves amplitude over time for bezier curves with any amount of control points.
+this modules solves amplitude over time for bezier curves with any amount of control points (any scale).
 
-It was designed for use creating audio envelopes. See [entry.js](entry.js) for an example that uses this module to both draw and play audio envelopes.  To see the example in action, simply serve up the public folder, and load the index.html in your browser.
-
-![ugly demo](public/beezy.png)
-
+It was designed for use creating audio envelopes. See [entry.js](entry.js) for an example that uses this module to draw an envelope.  To see the example in action, serve the public folder on localhost, and load index.html in your browser.
 
 ## usage
 
-Initiate the solver function with an array of control point coordinates:
+Note that bezier functions operate in the normalized space `0 <= t <= 1`, ergo this module does as well. See also modules `normalize-time` and `nvelope`.
+
+Initiate the solver function with a rayray of control point coordinates:
 
 ```js
 var solver = require('beezy')
