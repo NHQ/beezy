@@ -1,11 +1,10 @@
-var solver = require('./beezy')
+var solver = require('../beezy')
 var hover = require('mouse-around')
 var touchdown = require('../touchdown')
 var findPos = require('./findPosition')
 
-var curves = [[0,0], [.05, 1], [.2, .25],[.75, .5],  [1,0]]
+var curves = [[0,0], [.0, 1],[1, 1], [1,0]]
 
-var b = [[0,.50], [.05, 1], [.2, .25],[.75, .5],  [1,0]]
 
 
 var canvas = canv()//document.createElement('canvas')
@@ -46,7 +45,7 @@ curves.forEach(function(e, i){
       curves[i][0] = (e.detail.x  - canvas.pos[0]) / canvas.width
       curves[i][1] = (canvas.height - e.detail.y + canvas.pos[1]) / canvas.height
       draw()
-      console.log(curves[1])
+      console.log(curves)
     })
   })})(dot, i)
   parEl.appendChild(dot)

@@ -8,8 +8,8 @@ function beezn(scale){
     else fn += ') '
     if(x < scale) fn += '+ '
   }
-//  console.log(fn)
-  return new Function('x,y', 'return ' + fn)
+  fn = new Function('x,y', 'return ' + fn)
+  return fn 
 }
 
 function solver(curves){
@@ -17,7 +17,7 @@ function solver(curves){
   
 //  var pop = curves.pop()
 //  var shift = curves.shift()
-  var _curves = curves.map(function(e){return e}).reverse()
+//  var _curves = curves.map(function(e){return e})//.reverse()
 //  curves.push(pop)
 //  curves.unshift(shift)
   
