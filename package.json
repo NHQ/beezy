@@ -1,6 +1,6 @@
 {
   "name": "beezy",
-  "version": "0.5.0",
+  "version": "1.0.0",
   "description": "n scale bezier curve solver",
   "main": "beezy.js",
   "scripts": {
