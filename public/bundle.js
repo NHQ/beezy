@@ -21,7 +21,8 @@ function solver(curves){
   var y = curves.map(function(e){return e[1]})
 
   return function(t){
-    return fn(fn(t, x), y)
+    return [fn(t, x), fn(t, y)]
+    //return fn(fn(t, x), y)
   }
 }
 
@@ -56,8 +57,11 @@ var draw = function(){
   ctx.clearRect(0,0,canvas.width, canvas.height)
   ctx.moveTo(0, canvas.height)
   ctx.beginPath()
-  for(var x = 0; x < canvas.width; x+= 1){
-    ctx.lineTo(x, (1 - solve( x / canvas.width)) * canvas.height)
+  ctx.lineWidth = 3
+  ctx.lineColor = 'yellow'
+  for(var x = 0; x < canvas.width; x+=1 ){
+    var s = solve( x / canvas.width) 
+    ctx.lineTo(s[0] * canvas.width, (1 - s[1]) * canvas.height)
   }
   ctx.stroke()
 }
@@ -66,14 +70,14 @@ draw()
 
 canvas.pos = findPos(canvas)
 curves.forEach(function(e, i){
-  var dot = handle(e, canvas.pos)
+  var dot = handle(e, canvas.pos, i)
   touchdown.start(dot)
   ;(function(dot, i){
   dot.addEventListener('deltavector', function(e){
     //console.log(e, e.detail.offsetX, e.detail.offsetY)
     window.requestAnimationFrame(function(){
-      dot.style.left = e.detail.x - 15 + 'px'
-      dot.style.top = e.detail.y - 15 + 'px'
+      dot.style.left = e.detail.x - 7.5 + 'px'
+      dot.style.top = e.detail.y - 7.5 + 'px'
       curves[i][0] = (e.detail.x  - canvas.pos[0]) / canvas.width
       curves[i][1] = (canvas.height - e.detail.y + canvas.pos[1]) / canvas.height
       draw()
@@ -85,8 +89,8 @@ curves.forEach(function(e, i){
 function parent(){
   var node = document.createElement('div')
   var $ = node.style
-  $.width = 400 + 'px'
-  $.height = 244 + 'px'
+  $.width = 480 + 'px'
+  $.height = 480 + 'px'
   $.border = '3px solid black'
   $.display = 'flex'
   $.alignItems =  'center'
@@ -97,13 +101,16 @@ function parent(){
 function canv(){
   var node = document.createElement('canvas')
   var $ = node.style
-  node.width = 244
+  node.width = 240
   $.width  = node.width + 'px'
-  node.height = 122
+  node.height = 240
   $.height = node.height + 'px'
-  $.border = '3px solid purple'
+  $.border = '3px solid black'
   $.boxSizing = 'border-box'
-  $.background = 'green'
+  $.backgroundColor ='#eee'
+  $.backgroundImage = 'linear-gradient(45deg, gray 25%, transparent 25%, transparent 75%, gray 75%, gray), linear-gradient(45deg, gray 25%, transparent 25%, transparent 75%, gray 75%, gray)'
+  $.backgroundSize='30px 30px'
+  $.backgroundPosition = '0 0, 15px 15px'
   //$.position = 'absolute'
   //$.left = 22 + 'px'
   //$.top = 66 + 'px'
@@ -111,17 +118,19 @@ function canv(){
 
 }
 
-function handle(vec, pos){
+function handle(vec, pos, i){
+  var c = ['red', 'green', 'yellow', 'blue']
   var node = document.createElement('div')
   var $ = node.style
-  $.height = $.width = '30px'
+  var r = 15
+  $.height = $.width = r+'px'
   $.position = 'absolute'
-  $.border = '3px solid blue'
-  $.background = 'hsla(167, 50%, 50%, 1)'
+  $.border = '1px solid gray'
+  $.background = c[i] 
   $.borderRadius = '50% 50%'
   $.zIndex = '100'
-  $.left = vec[0] * canvas.width - 15 + pos[0] + 'px'
-  $.top = canvas.height - vec[1] * canvas.height - 15 + pos[1] +  'px'
+  $.left = vec[0] * canvas.width - r/2 + pos[0] + 'px'
+  $.top = canvas.height - vec[1] * canvas.height - r/2 + pos[1] +  'px'
   return node
 }
 

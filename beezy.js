@@ -20,6 +20,7 @@ function solver(curves){
   var y = curves.map(function(e){return e[1]})
 
   return function(t){
-    return fn(fn(t, x), y)
+    return [fn(t, x), fn(t, y)]
+    //return fn(fn(t, x), y)
   }
 }

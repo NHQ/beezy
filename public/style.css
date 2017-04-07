@@ -2,6 +2,10 @@
     font-weight:900;
 }
 
+body{
+  cursor: pointer;
+}
+
 body, div, canvas, input{
     margin:0px;
     padding:0px;  
