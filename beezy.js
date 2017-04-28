@@ -1,10 +1,15 @@
+var binom = require('binomial')
+
 module.exports = solver // takes a rayray of control points of n scale bezier curves
 
 function beezn(scale){
   var fn = ''
+  var bi = Array(scale + 1).fill(0).map(function(e,i){
+    return binom.get(scale, i)
+  })
   for(var x = 0; x <= scale; x++){
     fn += '(Math.pow(1 - x, ' + (scale - x) + ') * Math.pow(x, ' + x + ') * y['+x+'] '
-    if(x > 0 && x < scale) fn += '* ' + scale + ') '
+    if(x > 0 && x < scale) fn += '* ' + bi[x] + ') '
     else fn += ') '
     if(x < scale) fn += '+ '
   }

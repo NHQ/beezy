@@ -3,7 +3,7 @@ var hover = require('mouse-around')
 var touchdown = require('../touchdown')
 var findPos = require('./findPosition')
 
-var curves = [[0,0], [0, 1],[1, 1], [1,0]]
+var curves = [[0,0],[0,1],[.33, .33],[.66, .66],[1,1],[1,0]]
 
 
 
@@ -28,7 +28,7 @@ var draw = function(){
   ctx.clearRect(0,0,canvas.width, canvas.height)
   ctx.moveTo(0, canvas.height)
   ctx.beginPath()
-  ctx.lineWidth = 3
+  ctx.lineWidth = 7
   ctx.lineColor = 'yellow'
   for(var x = 0; x < canvas.width; x+=1 ){
     var s = solve( x / canvas.width) 
@@ -96,8 +96,8 @@ function handle(vec, pos, i){
   var r = 15
   $.height = $.width = r+'px'
   $.position = 'absolute'
-  $.border = '1px solid gray'
-  $.background = c[i] 
+  $.border = '3px solid black'
+  $.background = c[i % c.length] 
   $.borderRadius = '50% 50%'
   $.zIndex = '100'
   $.left = vec[0] * canvas.width - r/2 + pos[0] + 'px'

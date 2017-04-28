@@ -10,5 +10,8 @@
   "license": "ISC",
   "devDependencies": {
     "jsynth": "^2.8.0"
+  },
+  "dependencies": {
+    "binomial": "^0.2.0"
   }
 }
