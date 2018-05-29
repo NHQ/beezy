@@ -8,7 +8,7 @@ var sr = 16
 
 x = []
 y = []
-for(t = 0; t <= 1; t+=1/sr){
+for(t = 0; t < 1; t+=1/sr){
   xy = fn(t)
   x.push(xy[0])
   y.push(xy[1])
