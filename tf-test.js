@@ -29,12 +29,13 @@ ui.train.addEventListener('click', ()=>{
     y[i] = z[1]
   }
   var fn = beezy(cp.length, sr)
-  var solv = fn(x, y, .0001, (x,y)=>{
+  var solv = fn(x, y, .0001, (x,y, train)=>{
     if(++i%10===0){
       x= x.sum(1).dataSync()
       y = y.sum(1).dataSync()
       para[1].update(cp.map((e,i)=>[x[i], y[i]]))    
     }
+    if(!train) window.alert('Done')
     return
   })
   solv[0].sum(1).print()

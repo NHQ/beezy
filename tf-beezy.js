@@ -31,11 +31,11 @@ function solver(scale, sr, rate=.001){
         return ls.asScalar()
       }, true)
       //console.log(JSON.stringify(tf.memory()))
+      train = (l.dataSync()[0] > loss)
       if(cb) {
-        cb(x, y)
+        cb(x, y, train)
         await tf.nextFrame()
       }
-      train = (l.dataSync()[0] > loss)
       d.push(l)
       tf.dispose(d)
       d = []
