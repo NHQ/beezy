@@ -24,8 +24,16 @@ function solver(curves){
   var x = curves.map(function(e){return e[0]})
   var y = curves.map(function(e){return e[1]})
 
-  return function(t){
-    return [fn(t, x), fn(t, y)]
+  return function(t, i){
+      let _y = fn(t, y)
+    let _x = fn(t, x)
+    let yx = (fn(_x, y) * _y) + (_y/2) 
+    var dy = fn(Math.pow(_x,1/4), y)
+    //if(_y - _x > 0) dy = fn(_x, y) * _x//Math.sqrt(Math.pow(_y, 2) + Math.pow(_x, 2))//2e6)//.map((e,i) => e - _x[i])
+    //else dy = Math.sqrt(Math.pow(_y, 2) - Math.pow(_x, 2))//2e6)//.map((e,i) => e - _x[i])
+    return [_x, _y, dy ]
+
+//    return [fn(t, x), fn(t, y)]
     //return fn(fn(t, x), y)
   }
 }
