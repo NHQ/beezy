@@ -7,22 +7,32 @@
   </head>
   <body>
     <div id=intro>
-      <h2>Bezier Curves, Polynomials, Gradient Descent</h2>
+      <h2>Bezier Curves, Polynomials and Gradient Descent</h2>
       <p>
-        Draw a curve by moving the control points below, then click train.
-        Given the resutling curve, this module uses gradient descent to find the control points.
+        This is a demonstration using modern machine learning to find the "control points" of a Bezier Curve.  
+        </p>
+        <p>
+        The curve on the left is described by the rainbow colored control points.
+        </p>
+        <p>
+        Given the resutling curve, this module uses gradient descent to find those same control points.
         It could solve for fewer or more control points, as many as needed to fit the curve.
         It could also solve for more than the two dimensions of a typical bezier curve.
-        Polynomials have a lot of interesting uses...
       </p>
     </div>
-    <div id="bezel"></div>
+    <div class=row>
+      <div id="bezel" class=bez></div>
+      <button id=train>Train</button>
+      <div id="bezel2" class=bez></div>
+    </div>
     <div id=outro>
       <h2>For Hire</h2>
       <p>
-        This is a demonstration of skill in my primary domains, namely modern UI design, full stack development, and ML/AI R&D.  
+        This is a demonstration of skill in my primary domains: interfaces, full stack development, and ML/AI R&D.
+      </p>
+      <p>
         
-        I wrote the ML framework (on top of TensorFlow.js).  I wrote the Node.js front-end bundler.  The bezier curve interface is separate front-end module I developed for playing with high-performance algorithms, such as for live audio/video, and has several useful components.
+        I wrote the ML framework (on top of TensorFlow.js).  I wrote the Node.js front-end bundler.  The bezier curve interface is separate front-end module I developed for playing with high-performance algorithms, such as for live audio/video, and has several useful components. 
       </p>
       <p>
         Contact me nhq@folkstack.com

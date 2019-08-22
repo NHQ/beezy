@@ -9,11 +9,11 @@ function solver(scale, sr, rate=.001){
   t = tf.tensor(t, [sr, 1], 'float32')
   var stack = beezn(scale - 1, t)
   var oz = tf.train.adam(rate)
-  var x = tf.variable(tf.eye(scale)) 
-  var y = tf.variable(tf.eye(scale))
+  var x = tf.variable(tf.eye(scale).mul($.scalar(.5))) 
+  var y = tf.variable(tf.eye(scale).mul($.scalar(.5)))
   var eye = tf.eye(scale)
 
-  return function(solveX, solveY, loss=.01){
+  return async function(solveX, solveY, loss=.01, cb=null){
     solveX = tf.tensor(solveX, [sr])
     solveY = tf.tensor(solveY, [sr])
     var d = []
@@ -26,11 +26,15 @@ function solver(scale, sr, rate=.001){
         //var yl = solveY.sub(ys)
         var ls = tf.losses.meanSquaredError(solveX, xs).add(tf.losses.meanSquaredError(solveY, ys))
         //var l = tf.sqrt(tf.mean(tf.pow(tf.concat([xl, yl], [1]), $.scalar(2)), [1]))
-        ls.print()
+        //ls.print()
         d.push(xs, ys)
         return ls.asScalar()
       }, true)
       //console.log(JSON.stringify(tf.memory()))
+      if(cb) {
+        cb(x, y)
+        await tf.nextFrame()
+      }
       train = (l.dataSync()[0] > loss)
       d.push(l)
       tf.dispose(d)
