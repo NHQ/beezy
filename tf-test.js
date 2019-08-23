@@ -36,6 +36,7 @@ ui.train.addEventListener('click', ()=>{
       para[1].update(cp.map((e,i)=>[x[i], y[i]]))    
     }
     if(!train) window.alert('Done')
+    u
     return
   })
   solv[0].sum(1).print()
